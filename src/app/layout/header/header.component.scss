@@ -1,0 +1,42 @@
+@import "src/themes";
+
+:host {
+  background-color: $layout-background-color;
+  width: 100%;
+  > div.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    > div.title-wrapper {
+      width: $sidebar-width - $sidebar-padding;
+    }
+    > div.links {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 2;
+      justify-content: flex-end;
+      align-items: center;
+      > div.link {
+        margin-right: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        > nb-icon {
+          font-size: 1rem;
+          margin-right: 5px;
+          color: $secondary-color;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+        &:hover {
+          cursor: pointer;
+          > p.title {
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}

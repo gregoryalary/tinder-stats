@@ -1,0 +1,28 @@
+@import "src/themes";
+
+:host {
+  .text-generated {
+    color: $primary-color;
+    font-style: italic;
+  }
+  > h2.part-title {
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+  > div.stats-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    > app-simple-stat-number {
+      flex-grow: 1;
+      margin: 0 10px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

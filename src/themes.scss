@@ -1,0 +1,21 @@
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+
+$primary-color: #594CCA;
+$secondary-color: #ABDFF9;
+$sidebar-width: 20rem;
+$sidebar-padding: 1.5rem;
+$layout-background-color: white;
+
+$nb-themes: nb-register-theme((
+  layout-padding: 0 2.25rem 0.75rem,
+  layout-background-color: $layout-background-color,
+  // header
+  header-background-color: $layout-background-color,
+  header-shadow: none,
+  // sidebar
+  sidebar-background-color: $layout-background-color,
+  sidebar-shadow: none,
+  sidebar-width: $sidebar-width,
+  sidebar-padding: 0 $sidebar-padding,
+), default, default);

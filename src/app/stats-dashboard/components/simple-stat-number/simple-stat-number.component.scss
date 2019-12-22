@@ -1,0 +1,15 @@
+@import "src/themes";
+
+:host {
+  > nb-card {
+    > nb-card-body {
+      > p.value {
+        color: $primary-color;
+        padding: .5rem;
+        text-align: center;
+        margin: 0;
+        font-size: 1.15rem;
+      }
+    }
+  }
+}

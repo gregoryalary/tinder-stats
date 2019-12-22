@@ -1,0 +1,19 @@
+<nb-card>
+  <nb-card-header>Openings per day</nb-card-header>
+  <nb-card-body>
+    <div>
+      <div>
+        <div>
+          <canvas baseChart height="125"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="false"
+                  chartType="line">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
