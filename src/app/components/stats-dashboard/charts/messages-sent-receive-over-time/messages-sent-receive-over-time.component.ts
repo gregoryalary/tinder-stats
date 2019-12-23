@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ChartDataSets, ChartOptions} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
+import {TinderDailyUsage} from '../../../../models/tinder-daily-usage.model';
+import {UsageStore} from '../../../../stores/usage.store';
 
 @Component({
   selector: 'app-messages-sent-receive-over-time',
@@ -10,8 +12,8 @@ import {Color, Label} from 'ng2-charts';
 export class MessagesSentReceiveOverTimeComponent implements OnInit {
 
   public lineChartData: ChartDataSets[] = [
-    { data: [74, 88, 85, 103, 22, 15, 28], label: 'Messages sent' },
-    { data: [85, 84, 80, 87, 23, 10, 20], label: 'Messages received' }
+    { data: [], label: 'Messages sent' },
+    { data: [], label: 'Messages received' }
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -49,9 +51,16 @@ export class MessagesSentReceiveOverTimeComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private usageStore: UsageStore) { }
 
   ngOnInit() {
+    this.usageStore.usage$.subscribe((dailyUsages: TinderDailyUsage[]): void => {
+      this.lineChartData = [
+        { data: dailyUsages.map((usage: TinderDailyUsage): number => usage.messagesSent), label: 'Messages sent' },
+        { data: dailyUsages.map((usage: TinderDailyUsage): number => usage.received), label: 'Messages received' },
+      ];
+      this.lineChartLabels = dailyUsages.map((usage: TinderDailyUsage): string => usage.date.toDateString());
+    });
   }
 
 }

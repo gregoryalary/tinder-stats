@@ -9,6 +9,7 @@ $layout-background-color: white;
 $body-width: 1200px;
 
 $nb-themes: nb-register-theme((
+  color-primary: $primary-color,
   layout-padding: 0 2.25rem 0.75rem,
   layout-background-color: $layout-background-color,
   // header

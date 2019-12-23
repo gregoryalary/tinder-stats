@@ -1,0 +1,26 @@
+@import "../../../../../../../themes";
+
+:host {
+  width: 100%;
+  height: 100%;
+  > div.wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    box-shadow: 5px 5px 15px 1px rgba(237,237,237,1);
+     padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    > p.message, > nb-icon {
+      color: gray;
+    }
+  }
+  > div.wrapper.dragged-over {
+    box-shadow: 5px 5px 15px 1px rgba(225,225,225,1);
+    > p.message, > nb-icon {
+      color: $primary-color;
+    }
+  }
+}

@@ -1,18 +1,20 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ChartDataSets, ChartOptions} from 'chart.js';
 import {BaseChartDirective, Color, Label} from 'ng2-charts';
+import {ChartDataSets, ChartOptions} from 'chart.js';
+import {UsageStore} from '../../../../stores/usage.store';
+import {TinderDailyUsage} from '../../../../models/tinder-daily-usage.model';
 
 @Component({
-  selector: 'app-matches-over-time',
-  templateUrl: './matches-over-time.component.html',
-  styleUrls: ['./matches-over-time.component.scss']
+  selector: 'app-usage-over-time-chart',
+  templateUrl: './usage-over-time-chart.component.html',
+  styleUrls: ['./usage-over-time-chart.component.scss']
 })
-export class MatchesOverTimeComponent implements OnInit {
+export class UsageOverTimeChartComponent implements OnInit {
 
   public lineChartData: ChartDataSets[] = [
-    { data: [12, 35, 34, 36, 23, 12, 0], label: 'Stub' }
+    { data: [], label: 'Opening' }
   ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -40,11 +42,16 @@ export class MatchesOverTimeComponent implements OnInit {
     }
   ];
 
-  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
-
-  constructor() { }
+  constructor(private usageStore: UsageStore) { }
 
   ngOnInit() {
+    this.usageStore.usage$.subscribe((dailyUsages: TinderDailyUsage[]): void => {
+      this.lineChartData = [{
+        data: dailyUsages.map((usage: TinderDailyUsage): number => usage.appOpens),
+        label: 'Opening'
+      }];
+      this.lineChartLabels = dailyUsages.map((usage: TinderDailyUsage): string => usage.date.toDateString());
+    });
   }
 
 }

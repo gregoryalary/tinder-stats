@@ -1,0 +1,27 @@
+:host {
+  > nb-card {
+    max-width: 600px;
+    > nb-card-body {
+      > p.message {
+        text-align: justify;
+        margin: 0 0 20px 0;
+      }
+      > app-drag-and-drop-zone-file {
+
+      }
+      > div.buttons-wrapper {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        > button {
+          margin-right: 20px;
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}

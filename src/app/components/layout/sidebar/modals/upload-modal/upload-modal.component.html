@@ -1,0 +1,15 @@
+<nb-card>
+  <nb-card-header>
+    Generate stats
+  </nb-card-header>
+  <nb-card-body>
+    <p class="message">
+      The stats will be exclusively computed on your device, your data won't be sent anywhere.<br>
+      You don't know how to get your data.json file ?
+    </p>
+    <app-drag-and-drop-zone-file message="Drop your data.json file here" (fileDropped)="onFileDropped($event)"></app-drag-and-drop-zone-file>
+    <div class="buttons-wrapper">
+      <button nbButton status="warning" [hero]="true" tabIndex="-1" (click)="closeModal()">Cancel</button>
+    </div>
+  </nb-card-body>
+</nb-card>

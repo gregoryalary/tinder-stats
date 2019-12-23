@@ -1,19 +1,21 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ChartDataSets, ChartOptions} from 'chart.js';
 import {BaseChartDirective, Color, Label} from 'ng2-charts';
+import {UsageStore} from '../../../../stores/usage.store';
+import {TinderDailyUsage} from '../../../../models/tinder-daily-usage.model';
 
 @Component({
-  selector: 'app-right-left-number-swipes-over-time',
-  templateUrl: './right-left-number-swipes-over-time.component.html',
-  styleUrls: ['./right-left-number-swipes-over-time.component.scss']
+  selector: 'app-right-left-percentage-swipes-over-time',
+  templateUrl: './right-left-percentage-swipes-over-time.component.html',
+  styleUrls: ['./right-left-percentage-swipes-over-time.component.scss']
 })
-export class RightLeftNumberSwipesOverTimeComponent implements OnInit {
+export class RightLeftPercentageSwipesOverTimeComponent implements OnInit {
 
   public lineChartData: ChartDataSets[] = [
-    { data: [123, 108, 88, 45, 23, 66, 1], label: 'Right swipes' },
-    { data: [500, 456, 300, 45, 20, 50, 22], label: 'Left swipes' }
+    { data: [], label: 'Right swipes' },
+    { data: [], label: 'Left swipes' }
   ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -49,11 +51,16 @@ export class RightLeftNumberSwipesOverTimeComponent implements OnInit {
     }
   ];
 
-  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
-
-  constructor() { }
+  constructor(private usageStore: UsageStore) { }
 
   ngOnInit() {
+    this.usageStore.usage$.subscribe((dailyUsages: TinderDailyUsage[]): void => {
+      this.lineChartData = [
+        { data: dailyUsages.map((usage: TinderDailyUsage): number => 100 * usage.rightSwipes / (usage.rightSwipes + usage.leftSwipes)), label: 'Percentage of right swipes' },
+        { data: dailyUsages.map((usage: TinderDailyUsage): number => 100 * usage.leftSwipes / (usage.rightSwipes + usage.leftSwipes)), label: 'Percentage of left swipes' },
+      ];
+      this.lineChartLabels = dailyUsages.map((usage: TinderDailyUsage): string => usage.date.toDateString());
+    });
   }
 
 }
