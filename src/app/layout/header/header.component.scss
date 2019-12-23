@@ -1,7 +1,7 @@
 @import "src/themes";
 
 :host {
-  background-color: $layout-background-color;
+  background-color: transparent;//$layout-background-color;
   width: 100%;
   > div.wrapper {
     width: 100%;
@@ -10,8 +10,12 @@
     justify-content: space-between;
     > div.title-wrapper {
       width: $sidebar-width - $sidebar-padding;
+      > h1.title {
+        margin: 0;
+      }
     }
     > div.links {
+      background-color: white;
       display: flex;
       flex-direction: row;
       flex-grow: 2;

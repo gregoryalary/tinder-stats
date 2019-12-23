@@ -46,6 +46,13 @@
         font-size: 1rem;
         color: hotpink;
       }
+      > a {
+        color: $secondary-color;
+        text-decoration: none;
+        &:hover {
+          color: $primary-color;
+        }
+      }
     }
   }
 }

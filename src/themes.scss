@@ -6,6 +6,7 @@ $secondary-color: #ABDFF9;
 $sidebar-width: 20rem;
 $sidebar-padding: 1.5rem;
 $layout-background-color: white;
+$body-width: 1200px;
 
 $nb-themes: nb-register-theme((
   layout-padding: 0 2.25rem 0.75rem,
@@ -17,5 +18,11 @@ $nb-themes: nb-register-theme((
   sidebar-background-color: $layout-background-color,
   sidebar-shadow: none,
   sidebar-width: $sidebar-width,
-  sidebar-padding: 0 $sidebar-padding,
+  sidebar-padding: 6px $sidebar-padding 0.75rem,
 ), default, default);
+
+div.scrollable-container, nb-layout-header {
+  max-width: $body-width !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}

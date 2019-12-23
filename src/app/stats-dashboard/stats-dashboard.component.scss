@@ -5,6 +5,13 @@
     color: $primary-color;
     font-style: italic;
   }
+  a {
+    color: $secondary-color;
+    text-decoration: none;
+    &:hover {
+      color: $primary-color;
+    }
+  }
   > h2.part-title {
     &:first-of-type {
       margin-top: 0;

@@ -3,15 +3,15 @@ import {ChartDataSets, ChartOptions} from 'chart.js';
 import {BaseChartDirective, Color, Label} from 'ng2-charts';
 
 @Component({
-  selector: 'app-right-swipes-over-time',
-  templateUrl: './right-swipes-over-time.component.html',
-  styleUrls: ['./right-swipes-over-time.component.scss']
+  selector: 'app-right-left-number-swipes-over-time',
+  templateUrl: './right-left-number-swipes-over-time.component.html',
+  styleUrls: ['./right-left-number-swipes-over-time.component.scss']
 })
-export class RightSwipesOverTimeComponent implements OnInit {
+export class RightLeftNumberSwipesOverTimeComponent implements OnInit {
 
   public lineChartData: ChartDataSets[] = [
-    { data: [15, 16, 15, 14, 18, 21, 23], label: 'Right swipes' },
-    { data: [85, 84, 85, 86, 82, 79, 77], label: 'Left swipes' }
+    { data: [123, 108, 88, 45, 23, 66, 1], label: 'Right swipes' },
+    { data: [500, 456, 300, 45, 20, 50, 22], label: 'Left swipes' }
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {

@@ -1,0 +1,19 @@
+<nb-card>
+  <nb-card-header>Number of right and left swipes</nb-card-header>
+  <nb-card-body>
+    <div>
+      <div>
+        <div>
+          <canvas baseChart height="125"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [colors]="lineChartColors"
+                  [legend]="true"
+                  chartType="line">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
